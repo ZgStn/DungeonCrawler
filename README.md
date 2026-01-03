@@ -3,6 +3,7 @@ A simplified Dungeon Crawler built as a C# console application. Players explore 
 
 ## Game Overview
 
+![Game start view showing the dungeon and player](Start.jpg)
 
 **Features**
 - Object-Oriented Design:
@@ -10,6 +11,14 @@ A simplified Dungeon Crawler built as a C# console application. Players explore 
  Specific classes for walls and enemies with unique behaviors.
 
 ## Gameplay & Combat
+
+![Player attacking a rat using dice-based combat](RatAttack.jpg)
+
+![Snake attacking the player and dealing damage](SnakeAttack.jpg)
+
+
+- Enemy behaviour:
+ Rats move randomly; snakes move away when player is near.
 
 
 - Level Loading:
@@ -27,11 +36,9 @@ A simplified Dungeon Crawler built as a C# console application. Players explore 
 - Combat System:
  Dice-based attack and defense mechanics with damage calculation, counterattacks, and death handling.
 
-
-- Enemy behaviour:
- Rats move randomly; snakes move away when player is near.
-
 ## Game Over
+
+![Game over screen after the player runs out of health](End.jpg)
 
 **Technical Summary**
 - OOP Concepts:
