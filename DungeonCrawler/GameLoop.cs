@@ -3,15 +3,19 @@
 namespace DungeonCrawler
 {
     public class GameLoop
+
     {
         private LevelData levelData;
         private bool isRunning = true;
         private int turnCount = 1;
 
+
         public GameLoop(LevelData levelData)
         {
             this.levelData = levelData;
         }
+
+        // TODO: make method for selecting charecter!
 
         public void Run()
         {

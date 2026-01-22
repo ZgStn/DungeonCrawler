@@ -4,6 +4,7 @@ namespace DungeonCrawler
 {
     public class Player : LivingElement
     {
+        public string SelectedCharacter { get; set; }
         public int VisionRange { get; private set; } = 5;
 
         public Player(Position position)
@@ -19,5 +20,7 @@ namespace DungeonCrawler
         {
             return target is Enemy;
         }
+
+
     }
 }
