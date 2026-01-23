@@ -1,4 +1,4 @@
-﻿namespace DungeonCrawler
+﻿namespace DungeonCrawler.Collections
 {
     internal class Character
 

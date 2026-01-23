@@ -1,4 +1,5 @@
 ﻿
+using DungeonCrawler.Collections;
 using MongoDB.Driver;
 
 
@@ -9,8 +10,8 @@ namespace DungeonCrawler
     class Program
     {
         static void Main(string[] args)
-
         {
+
             var connectionString = "mongodb://localhost:27017/";
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase("OzgeStenstrom");
@@ -38,7 +39,6 @@ namespace DungeonCrawler
             };
             var characterCollection = database.GetCollection<Character>("Characters");
 
-            // TODO: characterCollection.InsertMany(characters);// insertmany- fel-
 
 
 
