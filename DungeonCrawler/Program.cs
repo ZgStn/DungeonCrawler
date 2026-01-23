@@ -1,7 +1,4 @@
-﻿
-using DungeonCrawler.Collections;
-
-
+﻿using DungeonCrawler.MongoDB;
 
 namespace DungeonCrawler
 {
@@ -14,10 +11,16 @@ namespace DungeonCrawler
 
             mongoContext.CreateDatabase();
 
+
+
             Console.CursorVisible = false;
 
             LevelData levelData = new LevelData();
+
+
             levelData.Load("Level1.txt");
+            mongoContext.SaveGameState(levelData);
+
 
             GameLoop game = new GameLoop(levelData);
             game.Run();

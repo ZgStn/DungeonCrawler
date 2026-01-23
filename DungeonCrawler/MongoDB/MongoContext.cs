@@ -1,9 +1,7 @@
 ﻿using DungeonCrawler.Elements;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Collections;
 
-namespace DungeonCrawler.Collections
+namespace DungeonCrawler.MongoDB
 {
     public class MongoContext
     {
@@ -13,18 +11,21 @@ namespace DungeonCrawler.Collections
         public MongoContext(string connectionString, string databaseName)
         {
             _client = new MongoClient(connectionString);
-            _database = _client.GetDatabase(databaseName); 
+            _database = _client.GetDatabase(databaseName);
         }
 
-
-        public void SaveGameState(List<LevelElement> elements)
+        //LevelData innehåller LevelElements och player. Det finns load
+        public void SaveGameState(LevelData leveldata)
         {
+            var characterCollection = _database.GetCollection<LevelData>("SavedGame");
 
+            var collectionExists = _database.ListCollectionNames().ToList().Contains("SavedGame");
+            characterCollection.InsertOne(leveldata);
         }
 
         public void LoadGameState(List<LevelElement> elements)
         {
-          
+
         }
 
         public void CreateDatabase()
@@ -36,27 +37,27 @@ namespace DungeonCrawler.Collections
             if (!collectionExists)
             {
                 var characters = new List<Character>
-              { 
-                new Character
-                {
-                    Name = "Warrior"
+                      {
+                        new Character
+                        {
+                            Name = "Warrior"
 
-                },
+                        },
 
-                new Character
-                {
-                    Name = "Explorer"
+                        new Character
+                        {
+                            Name = "Explorer"
 
-                },
+                        },
 
-                new Character
-                {
-                    Name = "Escaper"
+                        new Character
+                        {
+                            Name = "Escaper"
 
-                }
+                        }
 
-              };
-                
+                      };
+
                 characterCollection.InsertMany(characters);
             }
 
