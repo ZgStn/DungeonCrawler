@@ -38,7 +38,7 @@ namespace DungeonCrawler
             };
             var characterCollection = database.GetCollection<Character>("Characters");
 
-            characterCollection.InsertMany(characters);
+            // TODO: characterCollection.InsertMany(characters);// insertmany- fel-
 
 
 
