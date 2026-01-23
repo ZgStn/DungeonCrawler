@@ -1,67 +1,66 @@
 ﻿using DungeonCrawler.Elements;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Collections;
 
 namespace DungeonCrawler.Collections
 {
     public class MongoContext
     {
-        MongoClient _client;
-        IMongoDatabase _database;
+        public MongoClient _client;
+        public IMongoDatabase _database;
 
         public MongoContext(string connectionString, string databaseName)
         {
-            //var connectionString = "mongodb://localhost:27017/";
             _client = new MongoClient(connectionString);
-            _database = _client.GetDatabase(databaseName);
+            _database = _client.GetDatabase(databaseName); 
         }
+
 
         public void SaveGameState(List<LevelElement> elements)
         {
-
 
         }
 
         public void LoadGameState(List<LevelElement> elements)
         {
-            //    var connectionString = "mongodb://localhost:27017/";
-            //    var client = new MongoClient(connectionString);
-            //    var database = client.GetDatabase("OzgeStenstrom");
-
-
+          
         }
 
+        public void CreateDatabase()
+        {
+            var characterCollection = _database.GetCollection<Character>("Characters");
 
-        // save characters ()
+            var collectionExists = _database.ListCollectionNames().ToList().Contains("Characters");
 
-        //    var connectionString = "mongodb://localhost:27017/";
-        //    var client = new MongoClient(connectionString);
-        //    var database = client.GetDatabase("OzgeStenstrom");
+            if (!collectionExists)
+            {
+                var characters = new List<Character>
+              { 
+                new Character
+                {
+                    Name = "Warrior"
 
-        //    var characters = new List<Character>
-        //        {
-        //            new Character
-        //            {
-        //                Name = "Warrior"
+                },
 
-        //            },
+                new Character
+                {
+                    Name = "Explorer"
 
-        //            new Character
-        //            {
-        //                Name = "Explorer"
+                },
 
-        //            },
+                new Character
+                {
+                    Name = "Escaper"
 
-        //            new Character
+                }
 
-        //                Name = "Escaper"
+              };
+                
+                characterCollection.InsertMany(characters);
+            }
 
-        //            }
-
-        //        };
-        //var characterCollection = database.GetCollection<Character>("Characters");
-
-        //TODO: characterCollection.InsertMany(characters);// insertmany- fel-
-
+        }
 
     }
 }
