@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Elements;
+using DungeonCrawler.MongoDB;
 
 namespace DungeonCrawler
 {
@@ -10,12 +11,15 @@ namespace DungeonCrawler
         private int turnCount = 1;
 
 
-        public GameLoop(LevelData levelData)
+        private MongoContext mongoContext;
+
+        public GameLoop(LevelData levelData, MongoContext mongoContext)
         {
             this.levelData = levelData;
+            this.mongoContext = mongoContext;
         }
 
-        // TODO: make method for selecting charecter!
+
 
         public void Run()
         {
@@ -24,6 +28,7 @@ namespace DungeonCrawler
             while (isRunning)
             {
                 Loop();
+                mongoContext.SaveGameState(levelData);// lagt till
             }
         }
 

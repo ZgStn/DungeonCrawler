@@ -1,5 +1,4 @@
-﻿using DungeonCrawler.Elements;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 
 namespace DungeonCrawler.MongoDB
 {
@@ -17,14 +16,25 @@ namespace DungeonCrawler.MongoDB
         //LevelData innehåller LevelElements och player. Det finns load
         public void SaveGameState(LevelData leveldata)
         {
-            var characterCollection = _database.GetCollection<LevelData>("SavedGame");
+            var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
 
-            var collectionExists = _database.ListCollectionNames().ToList().Contains("SavedGame");
-            characterCollection.InsertOne(leveldata);
+
+            saveGameCollection.ReplaceOne(
+       filter: FilterDefinition<LevelData>.Empty, // matches "any document"
+       replacement: leveldata,                    // replaces whole document
+       options: new ReplaceOptions
+       {
+           IsUpsert = true                        // insert if none exists
+       });
+
+            //saveGameCollection.InsertOne(leveldata);
         }
 
-        public void LoadGameState(List<LevelElement> elements)
+        public void LoadGameState(LevelData leveldata)
         {
+            var savedGames = _database.GetCollection<SavedGame>("SavedGame");
+
+
 
         }
 

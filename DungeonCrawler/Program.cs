@@ -17,12 +17,14 @@ namespace DungeonCrawler
 
             LevelData levelData = new LevelData();
 
+            //TODO: skapa method(?) här att välja character
 
             levelData.Load("Level1.txt");
             mongoContext.SaveGameState(levelData);
 
 
-            GameLoop game = new GameLoop(levelData);
+
+            GameLoop game = new GameLoop(levelData, mongoContext);
             game.Run();
         }
     }
