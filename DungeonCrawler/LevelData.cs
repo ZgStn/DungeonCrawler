@@ -1,7 +1,9 @@
 ﻿using DungeonCrawler.Elements;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace DungeonCrawler
 {
+    [BsonIgnoreExtraElements]
     public class LevelData
     {
         public List<LevelElement> Elements { get; set; } = new List<LevelElement>();

@@ -1,5 +1,9 @@
-﻿namespace DungeonCrawler.Elements
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace DungeonCrawler.Elements
 {
+    [BsonDiscriminator(RootClass = true)]
+    [BsonKnownTypes(typeof(Wall), typeof(Player), typeof(Rat), typeof(Snake))]
     public abstract class LevelElement
     {
         public Position Position { get; set; }

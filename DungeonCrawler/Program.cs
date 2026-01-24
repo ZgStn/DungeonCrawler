@@ -15,12 +15,25 @@ namespace DungeonCrawler
 
             Console.CursorVisible = false;
 
-            LevelData levelData = new LevelData();
+
+
+            var levelData = mongoContext.LoadLevelData();
+            if (levelData == null)
+            {
+                levelData = new LevelData();
+                levelData.Load("Level1.txt");
+            }
+            else
+            {
+                //TODO: skriv det synggare senare
+                levelData.Player = (Player)levelData.Elements.First(l => l.GetType() == typeof(Player));
+            }
 
             //TODO: skapa method(?) här att välja character
 
-            levelData.Load("Level1.txt");
-            mongoContext.SaveGameState(levelData);
+
+            mongoContext.SaveLevelData(levelData);
+
 
 
 

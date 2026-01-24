@@ -2,16 +2,19 @@
 {
     public class Dice
     {
-        private int numberOfDice;
-        private int sidesPerDie;
-        private int modifier;
+
+        public int NumberOfDice { get; set; }
+        public int SidesPerDie { get; set; }
+
+        public int Modifier { get; set; }
+
         private Random random;
 
         public Dice(int numberOfDice, int sidesPerDie, int modifier)
         {
-            this.numberOfDice = numberOfDice;
-            this.sidesPerDie = sidesPerDie;
-            this.modifier = modifier;
+            this.NumberOfDice = numberOfDice;
+            this.SidesPerDie = sidesPerDie;
+            this.Modifier = modifier;
 
             random = new Random();
         }
@@ -20,18 +23,18 @@
         {
             int total = 0;
 
-            for (int i = 0; i < numberOfDice; i++)
+            for (int i = 0; i < NumberOfDice; i++)
             {
-                total += random.Next(1, sidesPerDie + 1);
+                total += random.Next(1, SidesPerDie + 1);
             }
 
-            return total + modifier;
+            return total + Modifier;
         }
 
 
         public override string ToString()
         {
-            return $"{numberOfDice}d{sidesPerDie}+{modifier}";
+            return $"{NumberOfDice}d{SidesPerDie}+{Modifier}";
         }
     }
 }

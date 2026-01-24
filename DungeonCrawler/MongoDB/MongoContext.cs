@@ -14,7 +14,7 @@ namespace DungeonCrawler.MongoDB
         }
 
         //LevelData innehåller LevelElements och player. Det finns load
-        public void SaveGameState(LevelData leveldata)
+        public void SaveLevelData(LevelData leveldata)
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
 
@@ -30,10 +30,11 @@ namespace DungeonCrawler.MongoDB
             //saveGameCollection.InsertOne(leveldata);
         }
 
-        public void LoadGameState(LevelData leveldata)
+        // det var void- blev LevelData
+        public LevelData LoadLevelData()
         {
-            var savedGames = _database.GetCollection<SavedGame>("SavedGame");
-
+            var savedGameCollection = _database.GetCollection<LevelData>("SavedGame");
+            return savedGameCollection.Find(_ => true).FirstOrDefault();
 
 
         }
