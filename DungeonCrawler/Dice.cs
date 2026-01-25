@@ -27,7 +27,6 @@
             return total + Modifier;
         }
 
-
         public override string ToString()
         {
             return $"{NumberOfDice}d{SidesPerDie}+{Modifier}";

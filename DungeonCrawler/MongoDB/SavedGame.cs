@@ -1,6 +1,6 @@
 ﻿namespace DungeonCrawler.MongoDB
 {
-    //TODO: används inte- vad ska vi göra
+    //TODO: should be used to map to MongoDB
     internal class SavedGame
     {
 

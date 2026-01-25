@@ -2,7 +2,6 @@
 
 namespace DungeonCrawler
 {
-
     class Program
     {
         static async Task Main(string[] args)
@@ -12,7 +11,6 @@ namespace DungeonCrawler
             var userConfiguration = new UserConfiguration(mongoContext);
 
             mongoContext.CreateDatabase();
-            
 
             // TODO: intro text? 
 
@@ -27,8 +25,6 @@ namespace DungeonCrawler
             levelData.Player.SelectedCharacter = await userConfiguration.SelectCharacterAsync(); 
             Console.Clear();
             Console.CursorVisible = false;
-            //levelData.Player.SelectedCharacter =
-            //TODO: create way for user to choose character
 
             mongoContext.SaveLevelData(levelData);
 

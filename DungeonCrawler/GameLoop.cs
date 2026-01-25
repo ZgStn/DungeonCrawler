@@ -24,7 +24,8 @@ namespace DungeonCrawler
             while (isRunning)
             {
                 Loop();
-                mongoContext.SaveLevelData(levelData);// lagt till
+                mongoContext.SaveLevelData(levelData); 
+                // TODO: mongocontext.SaveLevelData(levelData) here or when program closed?
             }
         }
 

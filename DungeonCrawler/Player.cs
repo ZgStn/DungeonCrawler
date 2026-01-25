@@ -19,8 +19,6 @@ namespace DungeonCrawler
         public override bool ShouldAttack(LivingElement target)
         {
             return target is Enemy;
-        }
-
-        
+        }    
     }
 }

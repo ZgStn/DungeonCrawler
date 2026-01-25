@@ -7,8 +7,8 @@ namespace DungeonCrawler
     public class LevelData
     {
         public List<LevelElement> Elements { get; set; } = new List<LevelElement>();
-
         public Player Player { get { return (Player)Elements.First(element => element is Player); } }
+
         public void Load(string filename)
         {
             Elements.Clear();

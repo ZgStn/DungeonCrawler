@@ -1,10 +1,4 @@
 ﻿using DungeonCrawler.MongoDB;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace DungeonCrawler
 {
@@ -16,6 +10,7 @@ namespace DungeonCrawler
         {
             _mongoContext = mongoContext;
         }
+
         public string SelectName()
         {
             Console.WriteLine("Choose player name: ");
@@ -24,7 +19,7 @@ namespace DungeonCrawler
 
         public async Task<Character> SelectCharacterAsync()
         {
-            Console.WriteLine(); 
+            Console.WriteLine();
             Console.WriteLine("Choose your character\n1. Explorer\n2. Warrior\n3. Escaper");
 
             while (true)
@@ -38,8 +33,6 @@ namespace DungeonCrawler
                 else if (playerInput.Key == ConsoleKey.D3)
                     return await _mongoContext.GetCharacterByNameAsync("Escaper");
             }
-            
-
         }
     }
 }
