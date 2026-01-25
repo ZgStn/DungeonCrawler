@@ -29,6 +29,14 @@ namespace DungeonCrawler
             }
         }
 
+        public async Task GameOverAsync(LevelData leveldata)
+        {
+            if (!leveldata.Player.IsAlive)
+            {
+                await mongoContext.DeleteLevelDataAsync(leveldata);
+            }
+        }
+
         private void Loop()
         {
             var keyInfo = Console.ReadKey(true);

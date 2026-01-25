@@ -33,6 +33,13 @@ namespace DungeonCrawler.MongoDB
                 IsUpsert = true                        // insert if none exists
             });
         }
+
+        public async Task DeleteLevelDataAsync(LevelData leveldata)
+        {
+            var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
+
+            await saveGameCollection.DeleteOneAsync(filter: FilterDefinition<LevelData>.Empty);
+        }
         
         public LevelData LoadLevelData() // TODO: make async
         {
