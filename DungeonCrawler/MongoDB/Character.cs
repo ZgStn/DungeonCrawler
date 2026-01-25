@@ -1,7 +1,10 @@
-﻿namespace DungeonCrawler.MongoDB
+﻿using MongoDB.Bson;
+
+namespace DungeonCrawler.MongoDB
 {
-    internal class Character
+    public class Character
     {
+        public ObjectId Id { get; set; }
         public string Name { get; set; }
     }
 }

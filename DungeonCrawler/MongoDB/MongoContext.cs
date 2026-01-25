@@ -13,6 +13,13 @@ namespace DungeonCrawler.MongoDB
             _database = _client.GetDatabase(databaseName);
         }
 
+        public async Task<Character> GetCharacterByNameAsync(string character)
+        {
+            var characterCollection = _database.GetCollection<Character>("Characters");
+            var filter = Builders<Character>.Filter.Eq(c => c.Name, character);
+            return await characterCollection.Find(filter).SingleOrDefaultAsync();
+        }
+
         //LevelData innehåller LevelElements och player. Det finns load
         public void SaveLevelData(LevelData leveldata) // TODO: make async // TODO: only save when exiting game?
         {

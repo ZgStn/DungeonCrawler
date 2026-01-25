@@ -61,7 +61,7 @@ namespace DungeonCrawler
         {
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Name: {Player.Name} (Health: {Player.HP}, Turn: {turnCount})");
+            Console.WriteLine($"{Player.Name} the {Player.SelectedCharacter.Name} (Health: {Player.HP}, Turn: {turnCount})");
 
             foreach (var levelElement in Elements)
             {
