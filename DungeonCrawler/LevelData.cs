@@ -8,8 +8,7 @@ namespace DungeonCrawler
     {
         public List<LevelElement> Elements { get; set; } = new List<LevelElement>();
 
-        public Player Player { get; set; }
-
+        public Player Player { get { return (Player)Elements.First(element => element is Player); } }
         public void Load(string filename)
         {
             Elements.Clear();
@@ -36,8 +35,7 @@ namespace DungeonCrawler
                             Elements.Add(new Snake(new Position(x, y)));
                             break;
                         case '@':
-                            Player = new Player(new Position(x, y));
-                            Elements.Add(Player);
+                            Elements.Add(new Player(new Position(x, y)));
                             break;
                         default:
                             break;

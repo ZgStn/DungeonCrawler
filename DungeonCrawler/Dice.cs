@@ -2,21 +2,17 @@
 {
     public class Dice
     {
-
         public int NumberOfDice { get; set; }
         public int SidesPerDie { get; set; }
-
         public int Modifier { get; set; }
 
-        private Random random;
+        private static Random random = new Random();
 
         public Dice(int numberOfDice, int sidesPerDie, int modifier)
         {
             this.NumberOfDice = numberOfDice;
             this.SidesPerDie = sidesPerDie;
             this.Modifier = modifier;
-
-            random = new Random();
         }
 
         public int Throw()

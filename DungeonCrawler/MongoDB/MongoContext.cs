@@ -17,8 +17,6 @@ namespace DungeonCrawler.MongoDB
         public void SaveLevelData(LevelData leveldata)
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
-
-
             saveGameCollection.ReplaceOne(
        filter: FilterDefinition<LevelData>.Empty, // matches "any document"
        replacement: leveldata,                    // replaces whole document
@@ -27,16 +25,12 @@ namespace DungeonCrawler.MongoDB
            IsUpsert = true                        // insert if none exists
        });
 
-            //saveGameCollection.InsertOne(leveldata);
         }
-
         // det var void- blev LevelData
         public LevelData LoadLevelData()
         {
             var savedGameCollection = _database.GetCollection<LevelData>("SavedGame");
             return savedGameCollection.Find(_ => true).FirstOrDefault();
-
-
         }
 
         public void CreateDatabase()
