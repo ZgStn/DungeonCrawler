@@ -4,13 +4,11 @@ using DungeonCrawler.MongoDB;
 namespace DungeonCrawler
 {
     public class GameLoop
-
     {
         private LevelData levelData;
         private bool isRunning = true;
         private int turnCount = 1;
-
-
+        
         private MongoContext mongoContext;
 
         public GameLoop(LevelData levelData, MongoContext mongoContext)
@@ -18,8 +16,6 @@ namespace DungeonCrawler
             this.levelData = levelData;
             this.mongoContext = mongoContext;
         }
-
-
 
         public void Run()
         {

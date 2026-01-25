@@ -20,7 +20,5 @@ namespace DungeonCrawler
         {
             return target is Enemy;
         }
-
-
     }
 }

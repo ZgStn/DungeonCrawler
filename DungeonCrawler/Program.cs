@@ -12,6 +12,8 @@ namespace DungeonCrawler
             mongoContext.CreateDatabase();
             Console.CursorVisible = false;
 
+            // TODO: intro text? 
+
             var levelData = mongoContext.LoadLevelData();
             if (levelData == null)
             {
@@ -20,10 +22,9 @@ namespace DungeonCrawler
             }
 
             //levelData.Player.SelectedCharacter =
-            //TODO: skapa method(?) här att välja character
+            //TODO: create way for user to choose character
 
             mongoContext.SaveLevelData(levelData);
-
 
             GameLoop game = new GameLoop(levelData, mongoContext);
             game.Run();

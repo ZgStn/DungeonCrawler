@@ -14,7 +14,7 @@ namespace DungeonCrawler.MongoDB
         }
 
         //LevelData innehåller LevelElements och player. Det finns load
-        public void SaveLevelData(LevelData leveldata)
+        public void SaveLevelData(LevelData leveldata) // TODO: make async // TODO: only save when exiting game?
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
             saveGameCollection.ReplaceOne(
@@ -27,13 +27,13 @@ namespace DungeonCrawler.MongoDB
 
         }
         // det var void- blev LevelData
-        public LevelData LoadLevelData()
+        public LevelData LoadLevelData() // TODO: make async
         {
             var savedGameCollection = _database.GetCollection<LevelData>("SavedGame");
             return savedGameCollection.Find(_ => true).FirstOrDefault();
         }
 
-        public void CreateDatabase()
+        public void CreateDatabase() // TODO: make async
         {
             var characterCollection = _database.GetCollection<Character>("Characters");
 
@@ -65,8 +65,6 @@ namespace DungeonCrawler.MongoDB
 
                 characterCollection.InsertMany(characters);
             }
-
         }
-
     }
 }
