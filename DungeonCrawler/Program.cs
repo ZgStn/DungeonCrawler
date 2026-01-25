@@ -12,7 +12,29 @@ namespace DungeonCrawler
 
             mongoContext.CreateDatabase();
 
-            // TODO: intro text? 
+            Console.CursorVisible = false;
+            Console.WriteLine(
+       """
+                        
+        
+                              Welcome to The Dungeon!
+
+            Move your character using the Up, Down, Left and Right arrow keys
+
+            If you encounter enemies, you can attack them by colliding with them
+
+                       To create your character, press Enter 
+        """);
+
+            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+
+            if (pressedKey.Key == ConsoleKey.Enter)
+            {
+
+            }
+
+            Console.Clear();
+            Console.CursorVisible = true;
 
             var levelData = mongoContext.LoadLevelData();
             if (levelData == null)

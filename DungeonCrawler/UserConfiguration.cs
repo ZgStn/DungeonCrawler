@@ -20,7 +20,7 @@ namespace DungeonCrawler
         public async Task<Character> SelectCharacterAsync()
         {
             Console.WriteLine();
-            Console.WriteLine("Choose your character\n1. Explorer\n2. Warrior\n3. Escaper");
+            Console.WriteLine("What do you want to play as?\n1. Explorer\n2. Warrior\n3. Escaper");
 
             while (true)
             {
