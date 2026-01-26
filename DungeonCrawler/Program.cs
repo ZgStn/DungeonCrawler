@@ -10,27 +10,15 @@ namespace DungeonCrawler
 
             var userConfiguration = new UserConfiguration(mongoContext);
 
-            mongoContext.CreateDatabase();
+            //var levelData = new LevelData();
 
-            //await userConfiguration.SavedOrNewGameAsync(levelData);
+            mongoContext.CreateDatabase();
 
             // TODO: New game or Continue
 
-            Console.CursorVisible = false;
-            Console.WriteLine(
-       """
-                        
-        
-                              Welcome to The Dungeon!
+            //await userConfiguration.SavedOrNewGameAsync(levelData);
 
-            Move your character using the Up, Down, Left and Right arrow keys
-
-            If you encounter enemies, you can attack them by colliding with them
-                                    
-                       To create your character, press Enter
-
-                            To exit program, press Esc
-        """);
+            userConfiguration.DisplayIntroText();
 
             ConsoleKeyInfo pressedKey = Console.ReadKey(true);
 
@@ -53,8 +41,6 @@ namespace DungeonCrawler
             levelData.Player.SelectedCharacter = await userConfiguration.SelectCharacterAsync();
             Console.Clear();
             Console.CursorVisible = false;
-
-            //mongoContext.SaveLevelData(levelData);
 
             GameLoop game = new GameLoop(levelData, mongoContext);
             await game.RunAsync();

@@ -11,6 +11,29 @@ namespace DungeonCrawler
             _mongoContext = mongoContext;
         }
 
+        public void DisplayIntroText()
+        {
+            Console.CursorVisible = false;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(
+       """
+                        
+        
+                              Welcome to The Dungeon!
+                                
+                                 MUAHAHAHAHAHAHA!!!
+
+            Move your character using the Up, Down, Left and Right arrow keys
+
+            If you encounter enemies, you can attack them by colliding with them
+                                    
+                       To create your character, press Enter
+
+                            To exit program, press Esc
+        """);
+            Console.ResetColor();
+        }
+
         public async Task SavedOrNewGameAsync(LevelData levelData)
         {
             Console.WriteLine("1. Continue game\n2. New game");
@@ -20,9 +43,13 @@ namespace DungeonCrawler
                 ConsoleKeyInfo playerInput = Console.ReadKey(true);
 
                 if (playerInput.Key == ConsoleKey.D1)
-                     _mongoContext.LoadLevelData();
+                {
+                    _mongoContext.LoadLevelData();
+                }
                 else if (playerInput.Key == ConsoleKey.D2)
+                {
                     await _mongoContext.DeleteLevelDataAsync(levelData);
+                }
             }
         }
 

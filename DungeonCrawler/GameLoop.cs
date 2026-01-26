@@ -33,7 +33,9 @@ namespace DungeonCrawler
         public async Task GameOverAsync(LevelData leveldata)
         {
             Console.SetCursorPosition(0, 3);
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("You have run out of health points and died! Game Over... Press enter to exit");
+            Console.ResetColor();
             await mongoContext.DeleteLevelDataAsync(leveldata);
            
             while (true)
