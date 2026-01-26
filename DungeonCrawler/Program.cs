@@ -32,6 +32,7 @@ namespace DungeonCrawler
                     await userConfiguration.NewGameStartAsync(levelData);
                 }
             }
+            
             GameLoop game = new GameLoop(levelData, mongoContext);
             await game.RunAsync();
         }

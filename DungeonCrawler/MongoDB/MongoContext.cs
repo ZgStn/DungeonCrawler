@@ -19,16 +19,16 @@ namespace DungeonCrawler.MongoDB
             var filter = Builders<Character>.Filter.Eq(c => c.Name, character);
             return await characterCollection.Find(filter).SingleOrDefaultAsync();
         }
-        // TODO: only save when exiting game?
+      
         public void SaveLevelData(LevelData leveldata) // TODO: make async 
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
             saveGameCollection.ReplaceOne(
-            filter: FilterDefinition<LevelData>.Empty, // matches "any document"
-            replacement: leveldata,                    // replaces whole document
+            filter: FilterDefinition<LevelData>.Empty, 
+            replacement: leveldata,                   
             options: new ReplaceOptions
             {
-                IsUpsert = true                        // insert if none exists
+                IsUpsert = true                       
             });
         }
 
@@ -36,7 +36,7 @@ namespace DungeonCrawler.MongoDB
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
 
-            await saveGameCollection.DeleteOneAsync(filter: FilterDefinition<LevelData>.Empty);// kan vara deleteMany-säkrare att ha many
+            await saveGameCollection.DeleteOneAsync(filter: FilterDefinition<LevelData>.Empty); // TODO: kan vara deleteMany-säkrare att ha many
         }
 
         public LevelData LoadLevelData() // TODO: make async
