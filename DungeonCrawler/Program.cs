@@ -12,6 +12,8 @@ namespace DungeonCrawler
 
             mongoContext.CreateDatabase();
 
+            //await userConfiguration.SavedOrNewGameAsync(levelData);
+
             // TODO: New game or Continue
 
             Console.CursorVisible = false;

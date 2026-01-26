@@ -34,7 +34,7 @@ namespace DungeonCrawler.MongoDB
             });
         }
 
-        public async Task DeleteLevelDataAsync(LevelData leveldata)
+        public async Task DeleteLevelDataAsync(LevelData levelData)
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
 
@@ -44,7 +44,7 @@ namespace DungeonCrawler.MongoDB
         public LevelData LoadLevelData() // TODO: make async
         {
             var savedGameCollection = _database.GetCollection<LevelData>("SavedGame");
-            return savedGameCollection.Find(_ => true).FirstOrDefault();
+                return savedGameCollection.Find(_ => true).FirstOrDefault();
         }
 
         public void CreateDatabase() // TODO: make async

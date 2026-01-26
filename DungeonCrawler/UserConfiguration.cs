@@ -11,6 +11,21 @@ namespace DungeonCrawler
             _mongoContext = mongoContext;
         }
 
+        public async Task SavedOrNewGameAsync(LevelData levelData)
+        {
+            Console.WriteLine("1. Continue game\n2. New game");
+            
+            while (true)
+            {
+                ConsoleKeyInfo playerInput = Console.ReadKey(true);
+
+                if (playerInput.Key == ConsoleKey.D1)
+                     _mongoContext.LoadLevelData();
+                else if (playerInput.Key == ConsoleKey.D2)
+                    await _mongoContext.DeleteLevelDataAsync(levelData);
+            }
+        }
+
         public string SelectName()
         {
             Console.WriteLine("Choose player name: ");
