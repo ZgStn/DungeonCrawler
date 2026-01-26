@@ -23,7 +23,7 @@ namespace DungeonCrawler.Elements
 
         public void Draw()
         {
-            Console.SetCursorPosition(Position.X, Position.Y + 3);
+            Console.SetCursorPosition(Position.X, Position.Y + 4);
             Console.ForegroundColor = Color;
             Console.Write(Symbol);
             HasBeenSeen = true;

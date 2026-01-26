@@ -24,17 +24,25 @@ namespace DungeonCrawler
             while (isRunning)
             {
                 await LoopAsync();
-                mongoContext.SaveLevelData(levelData);
                 // TODO: mongocontext.SaveLevelData(levelData) here or when program closed?
             }
+
+            mongoContext.SaveLevelData(levelData);
         }
 
         public async Task GameOverAsync(LevelData leveldata)
         {
-            if (!leveldata.Player.IsAlive)
+            Console.SetCursorPosition(0, 3);
+            Console.WriteLine("You have run out of health points and died! Game Over... Press enter to exit");
+            await mongoContext.DeleteLevelDataAsync(leveldata);
+           
+            while (true)
             {
-                await mongoContext.DeleteLevelDataAsync(leveldata);
-                Environment.Exit(0);
+                var keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Enter)
+                {
+                    Environment.Exit(0);
+                }
             }
         }
 
@@ -63,8 +71,12 @@ namespace DungeonCrawler
 
             levelData.Elements.RemoveAll(e => e is LivingElement le && !le.IsAlive && le is not Player);
 
-            levelData.Draw(levelData.Player, turnCount++);//ritar ut alt
-            await GameOverAsync(levelData);//added await
+            levelData.Draw(levelData.Player, turnCount++);
+            
+            if (!levelData.Player.IsAlive)
+            {
+                await GameOverAsync(levelData);
+            }
         }
 
         private void MovePlayer(ConsoleKeyInfo keyInfo)

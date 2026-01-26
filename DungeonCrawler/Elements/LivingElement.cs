@@ -74,18 +74,9 @@
 
                 if (defender.HP <= 0)
                 {
-                    Console.Write($" {defender.Name} died!");
-
-                    if (defender is Player)
-                    {
-                        Console.SetCursorPosition(0, 14);
-                        Console.WriteLine(" You have run out of health points and died! Game Over... Press enter to exit");
-                        Console.ReadLine();
-                        //Environment.Exit(0);
-                    }
-
+                    Console.Write($" {defender.Name} died!"); 
                     defender.IsAlive = false;
-                    return false;
+                       return false;
                 }
             }
             else

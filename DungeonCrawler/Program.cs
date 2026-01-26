@@ -24,8 +24,10 @@ namespace DungeonCrawler
             Move your character using the Up, Down, Left and Right arrow keys
 
             If you encounter enemies, you can attack them by colliding with them
+                                    
+                       To create your character, press Enter
 
-                       To create your character, press Enter 
+                            To exit program, press Esc
         """);
 
             ConsoleKeyInfo pressedKey = Console.ReadKey(true);
@@ -50,7 +52,7 @@ namespace DungeonCrawler
             Console.Clear();
             Console.CursorVisible = false;
 
-            mongoContext.SaveLevelData(levelData);
+            //mongoContext.SaveLevelData(levelData);
 
             GameLoop game = new GameLoop(levelData, mongoContext);
             await game.RunAsync();
