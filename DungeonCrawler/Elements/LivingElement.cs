@@ -81,7 +81,7 @@
                         Console.SetCursorPosition(0, 14);
                         Console.WriteLine(" You have run out of health points and died! Game Over... Press enter to exit");
                         Console.ReadLine();
-                        Environment.Exit(0);
+                        //Environment.Exit(0);
                     }
 
                     defender.IsAlive = false;

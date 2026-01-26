@@ -46,14 +46,14 @@ namespace DungeonCrawler
             }
 
             levelData.Player.Name = userConfiguration.SelectName();
-            levelData.Player.SelectedCharacter = await userConfiguration.SelectCharacterAsync(); 
+            levelData.Player.SelectedCharacter = await userConfiguration.SelectCharacterAsync();
             Console.Clear();
             Console.CursorVisible = false;
 
             mongoContext.SaveLevelData(levelData);
 
             GameLoop game = new GameLoop(levelData, mongoContext);
-            game.Run();
+            await game.RunAsync();
         }
     }
 };

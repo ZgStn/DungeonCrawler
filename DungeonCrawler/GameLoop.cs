@@ -8,7 +8,7 @@ namespace DungeonCrawler
         private LevelData levelData;
         private bool isRunning = true;
         private int turnCount = 1;
-        
+
         private MongoContext mongoContext;
 
         public GameLoop(LevelData levelData, MongoContext mongoContext)
@@ -17,14 +17,14 @@ namespace DungeonCrawler
             this.mongoContext = mongoContext;
         }
 
-        public void Run()
+        public async Task RunAsync()
         {
             levelData.Draw(levelData.Player, turnCount++);
 
             while (isRunning)
             {
-                Loop();
-                mongoContext.SaveLevelData(levelData); 
+                await LoopAsync();
+                mongoContext.SaveLevelData(levelData);
                 // TODO: mongocontext.SaveLevelData(levelData) here or when program closed?
             }
         }
@@ -34,10 +34,11 @@ namespace DungeonCrawler
             if (!leveldata.Player.IsAlive)
             {
                 await mongoContext.DeleteLevelDataAsync(leveldata);
+                Environment.Exit(0);
             }
         }
 
-        private void Loop()
+        private async Task LoopAsync()
         {
             var keyInfo = Console.ReadKey(true);
 
@@ -60,9 +61,10 @@ namespace DungeonCrawler
                 }
             }
 
-            levelData.Elements.RemoveAll(e => e is LivingElement le && !le.IsAlive);
+            levelData.Elements.RemoveAll(e => e is LivingElement le && !le.IsAlive && le is not Player);
 
-            levelData.Draw(levelData.Player, turnCount++);
+            levelData.Draw(levelData.Player, turnCount++);//ritar ut alt
+            await GameOverAsync(levelData);//added await
         }
 
         private void MovePlayer(ConsoleKeyInfo keyInfo)

@@ -38,9 +38,9 @@ namespace DungeonCrawler.MongoDB
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
 
-            await saveGameCollection.DeleteOneAsync(filter: FilterDefinition<LevelData>.Empty);
+            await saveGameCollection.DeleteOneAsync(filter: FilterDefinition<LevelData>.Empty);// kan vara deleteMany-säkrare att ha many
         }
-        
+
         public LevelData LoadLevelData() // TODO: make async
         {
             var savedGameCollection = _database.GetCollection<LevelData>("SavedGame");
