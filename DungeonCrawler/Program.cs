@@ -10,38 +10,28 @@ namespace DungeonCrawler
 
             var userConfiguration = new UserConfiguration(mongoContext);
 
-            //var levelData = new LevelData();
-
             mongoContext.CreateDatabase();
 
-            // TODO: New game or Continue
-
-            //await userConfiguration.SavedOrNewGameAsync(levelData);
-
-            userConfiguration.DisplayIntroText();
-
-            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
-
-            if (pressedKey.Key == ConsoleKey.Enter)
-            {
-
-            }
-
-            Console.Clear();
-            Console.CursorVisible = true;
-
             var levelData = mongoContext.LoadLevelData();
-            if (levelData == null)
+
+            if (levelData is null)
             {
                 levelData = new LevelData();
                 levelData.Load("Level1.txt");
+                await userConfiguration.NewGameStartAsync(levelData);
             }
+            else
+            {
+                int result = userConfiguration.LoadGameOrNewGameMenu();
+                Console.Clear();
 
-            levelData.Player.Name = userConfiguration.SelectName();
-            levelData.Player.SelectedCharacter = await userConfiguration.SelectCharacterAsync();
-            Console.Clear();
-            Console.CursorVisible = false;
-
+                if (result == 2)
+                {
+                    levelData = new LevelData();
+                    levelData.Load("Level1.txt");
+                    await userConfiguration.NewGameStartAsync(levelData);
+                }
+            }
             GameLoop game = new GameLoop(levelData, mongoContext);
             await game.RunAsync();
         }

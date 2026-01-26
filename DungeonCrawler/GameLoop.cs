@@ -24,7 +24,6 @@ namespace DungeonCrawler
             while (isRunning)
             {
                 await LoopAsync();
-                // TODO: mongocontext.SaveLevelData(levelData) here or when program closed?
             }
 
             mongoContext.SaveLevelData(levelData);
@@ -60,6 +59,7 @@ namespace DungeonCrawler
 
             Console.Clear();
             Console.ResetColor();
+            Console.CursorVisible = false;
 
             MovePlayer(keyInfo);
 

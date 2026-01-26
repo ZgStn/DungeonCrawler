@@ -11,6 +11,16 @@ namespace DungeonCrawler
             _mongoContext = mongoContext;
         }
 
+        public async Task NewGameStartAsync(LevelData levelData)
+        {
+            DisplayIntroText();
+            Console.Clear();
+            levelData.Player.Name = SelectName();
+            Console.Clear();
+            levelData.Player.SelectedCharacter = await SelectCharacterAsync();
+            Console.Clear();
+        }
+
         public void DisplayIntroText()
         {
             Console.CursorVisible = false;
@@ -31,30 +41,41 @@ namespace DungeonCrawler
 
                             To exit program, press Esc
         """);
+            
+            ConsoleKeyInfo pressedKey = Console.ReadKey(true);
+
+            if (pressedKey.Key == ConsoleKey.Enter)
+            {
+
+            }
+
             Console.ResetColor();
         }
 
-        public async Task SavedOrNewGameAsync(LevelData levelData)
+        public int LoadGameOrNewGameMenu()
         {
             Console.WriteLine("1. Continue game\n2. New game");
-            
+
             while (true)
             {
                 ConsoleKeyInfo playerInput = Console.ReadKey(true);
 
                 if (playerInput.Key == ConsoleKey.D1)
                 {
-                    _mongoContext.LoadLevelData();
+                    return 1;
+
                 }
                 else if (playerInput.Key == ConsoleKey.D2)
                 {
-                    await _mongoContext.DeleteLevelDataAsync(levelData);
+                    return 2;
                 }
             }
         }
 
         public string SelectName()
         {
+            Console.CursorVisible = true;
+
             Console.WriteLine("Choose player name: ");
             return Console.ReadLine();
         }
