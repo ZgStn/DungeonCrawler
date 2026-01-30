@@ -1,7 +1,17 @@
-**Dungeon Crawler – Lab 2**
+## DungeonCrawler
 A simplified Dungeon Crawler built as a C# console application. Players explore a predefined dungeon, fight enemies, and experience a turn-based roguelike inspired game using core object-oriented principles. 
 
-This project was developed as Lab 2 in the programming studies, with a focus on object-oriented design.
+This project was developed as Lab 2 in the programming studies, with a focus on object-oriented design. It has since been refactored as part of a course in 
+Database Development & Administration. The application now uses MongoDB to enable the user to save a game and return to it at a later time. 
+
+## Prerequisites
+- .NET 8
+- MongoDB Compass
+
+## To run DungeonCrawler
+1. Clone the repository
+2. Connect MongoDB Compass to localhost 
+3. Run the application
 
 ## Game Overview
 
