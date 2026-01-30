@@ -20,7 +20,7 @@ namespace DungeonCrawler.MongoDB
             return await characterCollection.Find(filter).SingleOrDefaultAsync();
         }
       
-        public void SaveLevelData(LevelData leveldata) // TODO: make async 
+        public void SaveLevelData(LevelData leveldata)  
         {
             var saveGameCollection = _database.GetCollection<LevelData>("SavedGame");
             saveGameCollection.ReplaceOne(
@@ -39,13 +39,13 @@ namespace DungeonCrawler.MongoDB
             await saveGameCollection.DeleteManyAsync(filter: FilterDefinition<LevelData>.Empty); 
         }
 
-        public LevelData LoadLevelData() // TODO: make async
+        public LevelData LoadLevelData() 
         {
             var savedGameCollection = _database.GetCollection<LevelData>("SavedGame");
                 return savedGameCollection.Find(_ => true).FirstOrDefault();
         }
 
-        public void CreateDatabase() // TODO: make async
+        public void CreateDatabase() 
         {
             var characterCollection = _database.GetCollection<Character>("Characters");
 
